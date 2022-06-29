@@ -1,5 +1,11 @@
 from django.urls import path
-from .views import ManufacturersView, ProductsView, ManufacturerRetrieveView
+from .views import (ManufacturersView, ProductsView,
+                    ManufacturerRetrieveView, 
+                    UpdateManufacturerRetrieveView, 
+                    DetailManufacturerRetrieveView,
+                    CreateManufacturersView, 
+                    DeleteManufacturersView)
+
 
 urlpatterns = [
     
@@ -8,7 +14,10 @@ urlpatterns = [
     # path("products/<int:pk>/", product_detail, name="product-detail"),
 
     path("manufacturers/", ManufacturerRetrieveView.as_view(), name="manufacturer-list"),
-    # path("manufacturers/<int:pk>/", manufacturer_detail, name="manufacturer-detail")
+    path("manufacturers/create", CreateManufacturersView.as_view(), name="manufacturer-create"),
+    path("manufacturers/<int:pk>/edit/", UpdateManufacturerRetrieveView.as_view(), name="manufacturer-edit"),
+    path("manufacturers/<int:pk>/", DetailManufacturerRetrieveView.as_view(), name="manufacturer-detail"),
+    path("manufacturers/<int:pk>/delete/", DeleteManufacturersView.as_view(), name="manufacturer-delete"),
 
    
 ]
