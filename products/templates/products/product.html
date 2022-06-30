@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PDF Output</title>
+    <style>
+        @page{
+            size: A4;
+            margin: 2.5cm 1.5cm 3.5cm 1.5cm;
+            @top-center {
+                content: "ONLINE STORE";
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h2>Products</h2>
+
+<table class="table table-hover table-striped table-bordered"
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+        <th scope="col">Shipping Cost</th>
+        <th scope="col">Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <th scope="col">{{forloop.counter}}</th>
+            <td scope="col">{{product.name}}</td>
+            <td scope="col">{{product.description}}</td>
+            <td scope="col">{{product.price}}</td>
+            <td scope="col">{{product.shipping_cost}}</td>
+            <td scope="col">{{product.quantity}}</td>
+          </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>
