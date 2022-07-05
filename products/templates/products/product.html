@@ -4,13 +4,31 @@
     <meta charset="UTF-8">
     <title>PDF Output</title>
     <style>
-        @page{
-            size: A4;
-            margin: 2.5cm 1.5cm 3.5cm 1.5cm;
-            @top-center {
-                content: "ONLINE STORE";
-            }
+        body {
+          font-family: sans-serif;
         }
+        @media print {
+          a::after {
+            content: " (" attr(href) ") ";
+          }
+          pre {
+            white-space: pre-wrap;
+          }
+          @page {
+            margin: 0.75in;
+            size: Letter;
+            @top-right {
+              content: counter(page);
+            }
+            @top-center {
+              content: "ONLINE STORE";
+            }
+          }
+          @page :first {
+            @top-right {
+              content: "";
+            }
+      
     </style>
 </head>
 <body>
@@ -20,12 +38,12 @@
 <table class="table table-hover table-striped table-bordered"
     <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Description</th>
-        <th scope="col">Price</th>
-        <th scope="col">Shipping Cost</th>
-        <th scope="col">Quantity</th>
+        <th width="5%" scope="col">#</th>
+        <th width="25%" scope="col">Name</th>
+        {% comment %} <th width="25%" scope="col">Description</th> {% endcomment %}
+        <th width="25%" scope="col">Price</th>
+        <th width="10%" scope="col">Shipping Cost</th>
+        <th width="10%" scope="col">Quantity</th>
       </tr>
     </thead>
     <tbody>
@@ -33,7 +51,7 @@
         <tr>
             <th scope="col">{{forloop.counter}}</th>
             <td scope="col">{{product.name}}</td>
-            <td scope="col">{{product.description}}</td>
+            {% comment %} <td scope="col">{{product.description}}</td> {% endcomment %}
             <td scope="col">{{product.price}}</td>
             <td scope="col">{{product.shipping_cost}}</td>
             <td scope="col">{{product.quantity}}</td>
